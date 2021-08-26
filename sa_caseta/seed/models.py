@@ -37,6 +37,9 @@ class Seed(models.Model):
     auxiliar_seeds = models.ManyToManyField("seed.Seed", blank=True, verbose_name=("Auxiliar seeds"))
     auxiliar_plants = models.TextField(null=True, blank=True)
 
+    def __str__(self):
+        return self.name
+
     def save(self, *args, **kwargs):
         # create short uuid
         if self.uniqueId is None:
