@@ -10,7 +10,7 @@ services:
     env_file:
       - .env
     volumes:
-      - ./sa_caseta:/code
+      - ./sa_caseta/:/code/
   
   web:
     <<: *base_django_back
