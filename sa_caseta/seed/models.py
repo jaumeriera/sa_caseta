@@ -22,7 +22,7 @@ class Seed(models.Model):
         (SUN_HIGH, 'Sun')
     ]
 
-    uniqueId = models.CharField(null=True, blank=True, max_length=100)
+    uniqueId = models.CharField(null=True, blank=True, max_length=100, verbose_name='Code')
     name = models.CharField(null=False, blank=True, max_length=100)
     origin = models.CharField(null=True, blank=True, max_length=100)
     sowing_months = models.CharField(null=True, blank=True, max_length=100)
