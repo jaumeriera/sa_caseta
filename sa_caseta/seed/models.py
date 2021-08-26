@@ -33,7 +33,7 @@ class Seed(models.Model):
     transplant = models.BooleanField(null=True, blank=True)
     germination_days = models.IntegerField(null=True, blank=True)
     water_needed = models.IntegerField(choices=WATER_CHOICES, null=True, blank=True)
-    sun_requirement = models.IntegerField(null=True, blank=True, choices=SUN_CHOICES)
+    sun_needed = models.IntegerField(null=True, blank=True, choices=SUN_CHOICES)
     auxiliar_seeds = models.ManyToManyField("seed.Seed", blank=True, verbose_name=("Auxiliar seeds"))
     auxiliar_plants = models.TextField(null=True, blank=True)
 
