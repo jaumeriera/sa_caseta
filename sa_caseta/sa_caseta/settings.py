@@ -41,6 +41,7 @@ BASE_APPS = [
 
 OWN_APPS = [
     'seed',
+    'core'
 ]
 
 INSTALLED_APPS = BASE_APPS + OWN_APPS

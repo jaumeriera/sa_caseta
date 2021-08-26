@@ -25,7 +25,7 @@ class Seed(models.Model):
     uniqueId = models.CharField(null=True, blank=True, max_length=100, verbose_name='Code')
     name = models.CharField(null=False, blank=True, max_length=100)
     origin = models.CharField(null=True, blank=True, max_length=100)
-    sowing_months = models.CharField(null=True, blank=True, max_length=100)
+    sowing_months = models.ManyToManyField("core.Month", blank=True, verbose_name=("Sowing months"))
     days_until_harvest = models.IntegerField(null=True, blank=True)
     min_temperature = models.DecimalField(null=True, blank=True, max_digits=4, decimal_places=2)
     max_temperature = models.DecimalField(null=True, blank=True, max_digits=4, decimal_places=2)
