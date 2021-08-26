@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  back: &base_django_back
+    build: .
+    ports:
+      - "8000:8000"
+    depends_on: 
+      - db
+    env_file:
+      - .env
+    volumes:
+      - ./sa_caseta:/code
+  
+  web:
+    <<: *base_django_back
+    command: python manage.py runserver 0.0.0.0:8000
+  
+  migrate:
+    <<: *base_django_back
+    command: python manage.py migrate
+  
+  makemigrations:
+    <<: *base_django_back
+    command: python manage.py makemigrations
+  
+  test:
+    <<: *base_django_back
+    command: python manage.py test
+
+  db:
+    image: postgres:13.2
+    volumes:
+      - /data/sa_caseta:/var/lib/postgresql/data
+    env_file:
+      - .env
