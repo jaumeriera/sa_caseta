@@ -23,19 +23,19 @@ class Seed(models.Model):
     ]
 
     uniqueId = models.CharField(null=True, blank=True, max_length=100)
-    name = models.CharField(null=False, blank=False, max_length=100)
-    origin = models.CharField(null=True, blank=False, max_length=100)
-    sowing_months = models.CharField(null=True, blank=False, max_length=100)
-    days_until_harvest = models.IntegerField(null=True, blank=False)
-    min_temperature = models.DecimalField(null=True, blank=False, max_digits=4, decimal_places=2)
-    max_temperature = models.DecimalField(null=True, blank=False, max_digits=4, decimal_places=2)
-    productivity = models.IntegerField(null=True, blank=False)
-    transplant = models.BooleanField(null=True, blank=False)
-    germination_days = models.IntegerField(null=True, blank=False)
-    water_needed = models.IntegerField(choices=WATER_CHOICES, null=True, blank=False)
-    sun_requirement = models.IntegerField(choices=SUN_CHOICES)
-    auxiliar_seeds = models.ManyToManyField("seed.Seed", verbose_name=("Auxiliar seeds"))
-    auxiliar_plants = models.TextField(null=True, blank=False)
+    name = models.CharField(null=False, blank=True, max_length=100)
+    origin = models.CharField(null=True, blank=True, max_length=100)
+    sowing_months = models.CharField(null=True, blank=True, max_length=100)
+    days_until_harvest = models.IntegerField(null=True, blank=True)
+    min_temperature = models.DecimalField(null=True, blank=True, max_digits=4, decimal_places=2)
+    max_temperature = models.DecimalField(null=True, blank=True, max_digits=4, decimal_places=2)
+    productivity = models.IntegerField(null=True, blank=True)
+    transplant = models.BooleanField(null=True, blank=True)
+    germination_days = models.IntegerField(null=True, blank=True)
+    water_needed = models.IntegerField(choices=WATER_CHOICES, null=True, blank=True)
+    sun_requirement = models.IntegerField(null=True, blank=True, choices=SUN_CHOICES)
+    auxiliar_seeds = models.ManyToManyField("seed.Seed", blank=True, verbose_name=("Auxiliar seeds"))
+    auxiliar_plants = models.TextField(null=True, blank=True)
 
     def save(self, *args, **kwargs):
         # create short uuid
