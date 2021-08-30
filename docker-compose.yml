@@ -34,3 +34,9 @@ services:
       - /data/sa_caseta:/var/lib/postgresql/data
     env_file:
       - .env
+
+  duck:
+    image: linuxserver/duckdns
+    container_name: duckdns
+    env_file: 
+      - .env
