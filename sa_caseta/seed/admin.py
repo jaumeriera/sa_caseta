@@ -1,5 +1,5 @@
 from django.contrib import admin
-from seed.models import Seed
+from seed.models import Seed, SeedOrigin
 
 class SeedAdmin(admin.ModelAdmin):
     exclude = ('uniqueId',)
@@ -28,4 +28,8 @@ class SeedAdmin(admin.ModelAdmin):
             })
     )
 
+class SeedOriginAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(SeedOrigin, SeedOriginAdmin)
 admin.site.register(Seed, SeedAdmin)
