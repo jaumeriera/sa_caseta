@@ -22,20 +22,32 @@ class Seed(models.Model):
         (SUN_HIGH, 'Sun')
     ]
 
+    # General seed fields
     uniqueId = models.CharField(null=True, blank=True, max_length=100, verbose_name='Code')
     name = models.CharField(null=False, blank=True, max_length=100)
+    scientific_name = models.CharField(null=False, blank=True, max_length=100)
     origin = models.CharField(null=True, blank=True, max_length=100)
-    sowing_months = models.ManyToManyField("core.Month", blank=True, verbose_name=("Sowing months"))
-    days_until_harvest = models.IntegerField(null=True, blank=True)
+    water_needed = models.IntegerField(choices=WATER_CHOICES, null=True, blank=True)
+    sun_needed = models.IntegerField(null=True, blank=True, choices=SUN_CHOICES)
     min_temperature = models.DecimalField(null=True, blank=True, max_digits=4, decimal_places=2)
     max_temperature = models.DecimalField(null=True, blank=True, max_digits=4, decimal_places=2)
     productivity = models.IntegerField(null=True, blank=True)
-    transplant = models.BooleanField(null=True, blank=True)
+    
+    # Germination fields
+    germination_temperature = models.DecimalField(null=True, blank=True, max_digits=4, decimal_places=2)
     germination_days = models.IntegerField(null=True, blank=True)
-    water_needed = models.IntegerField(choices=WATER_CHOICES, null=True, blank=True)
-    sun_needed = models.IntegerField(null=True, blank=True, choices=SUN_CHOICES)
+    transplant = models.BooleanField(null=True, blank=True)
+
+    # Sowing fields
+    sowing_months = models.ManyToManyField("core.Month", blank=True, verbose_name=("Sowing months"))
+    days_until_harvest = models.IntegerField(null=True, blank=True)
+    
+    # Auxiliar
     auxiliar_seeds = models.ManyToManyField("seed.Seed", blank=True, verbose_name=("Auxiliar seeds"))
     auxiliar_plants = models.TextField(null=True, blank=True)
+    
+    # Miscelania
+    comments = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.name
