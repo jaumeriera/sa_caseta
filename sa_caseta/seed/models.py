@@ -58,3 +58,9 @@ class Seed(models.Model):
             self.uniqueId =str(uuid4()).split('-')[1]
         
         super(Seed, self).save(*args, **kwargs)
+    
+    def get_months(self):
+        return ", ".join([
+            str(month) 
+            for month in self.sowing_months.all()
+        ])

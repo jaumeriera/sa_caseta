@@ -5,8 +5,8 @@ class SeedAdmin(admin.ModelAdmin):
     exclude = ('uniqueId',)
     save_as = True
     filter_horizontal = ('auxiliar_seeds', 'sowing_months')
-    list_display = ('name', 'uniqueId', 'origin', 'germination_days', 
-                    'days_until_harvest', 'sun_needed', 'water_needed')
+    list_display = ('name', 'uniqueId', 'origin', 'sun_needed',
+                    'water_needed', 'get_months')
     fieldsets = (
             ('General info', {
                 'fields': ('name', 'scientific_name', 'origin',
