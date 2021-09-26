@@ -26,7 +26,7 @@ class Seed(models.Model):
     uniqueId = models.CharField(null=True, blank=True, max_length=100, verbose_name='Code')
     name = models.CharField(null=False, blank=True, max_length=100)
     scientific_name = models.CharField(null=False, blank=True, max_length=100)
-    origin = models.CharField(null=True, blank=True, max_length=100)
+    origin = models.ForeignKey("seed.SeedOrigin", null=True, blank=True, verbose_name=("Origin"), on_delete=models.SET_NULL)
     water_needed = models.IntegerField(choices=WATER_CHOICES, null=True, blank=True)
     sun_needed = models.IntegerField(null=True, blank=True, choices=SUN_CHOICES)
     min_temperature = models.DecimalField(null=True, blank=True, max_digits=4, decimal_places=2)
@@ -49,6 +49,9 @@ class Seed(models.Model):
     # Miscelania
     comments = models.TextField(null=True, blank=True)
 
+    class Meta():
+        db_table = 'seed'
+
     def __str__(self):
         return self.name
 
@@ -64,3 +67,14 @@ class Seed(models.Model):
             str(month) 
             for month in self.sowing_months.all()
         ])
+
+
+class SeedOrigin(models.Model):
+
+    name = models.CharField(null=False, blank=True, max_length=100)
+
+    def __str__(self) -> str:
+        return self.name
+
+    class Meta():
+        db_table = 'seed_origin' 
